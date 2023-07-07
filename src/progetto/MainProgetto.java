@@ -33,10 +33,6 @@ public class MainProgetto {
 		catalogo.add(rivista2);
 		catalogo.add(rivista3);
 
-		// RIMOZIONE DI UN ELEMENTO TRAMITE IDBN
-		String rimuoviIsbn = "1234567891012";
-		rimuoviElementoIsbn(catalogo, rimuoviIsbn);
-
 		// STAMPO RIVISTE NEL CATALOGO
 		System.out.println("RIVISTE CATALOGO:");
 		for (Catalogo item : catalogo) {
@@ -55,6 +51,43 @@ public class MainProgetto {
 
 		// STAMPO LIBRI NEL CATALOGO
 		System.out.println("LIBRI CATALOGO:");
+		for (Catalogo item : catalogo) {
+			if (item instanceof Libri) {
+				Libri libro = (Libri) item;
+				System.out.println("Titolo: " + libro.getTitolo());
+				System.out.println("Autore: " + libro.getAutore());
+				System.out.println("ISBN: " + libro.getIsbn());
+				System.out.println("Anno pubblicazione: " + libro.getAnnoPubblicazione());
+				System.out.println("Numero pagine: " + libro.getNumeroPagine());
+				System.out.println("Genere: " + libro.getGenere());
+				System.out.println("-------------------------");
+			}
+		}
+
+		System.out.println("");
+
+		// RIMOZIONE DI UN ELEMENTO TRAMITE ISBN ["HARRY POTTER"]
+		String rimuoviIsbn = "1234567891012";
+		rimuoviElementoIsbn(catalogo, rimuoviIsbn);
+
+		// STAMPO RIVISTE NEL CATALOGO DOPO RIMOZIONE ELEMENTI
+		System.out.println("RIVISTE CATALOGO DOPO RIMOZIONE ELEMENTI:");
+		for (Catalogo item : catalogo) {
+			if (item instanceof Riviste) {
+				Riviste rivista = (Riviste) item;
+				System.out.println("Titolo: " + rivista.getTitolo());
+				System.out.println("ISBN: " + rivista.getIsbn());
+				System.out.println("Anno pubblicazione: " + rivista.getAnnoPubblicazione());
+				System.out.println("Numero pagine: " + rivista.getNumeroPagine());
+				System.out.println("Periodicità: " + rivista.getPeriodo());
+				System.out.println("-------------------------");
+			}
+		}
+
+		System.out.println("");
+
+		// STAMPO LIBRI NEL CATALOGO DOPO RIMOZIONE ELEMENTI
+		System.out.println("LIBRI CATALOGO DOPO RIMOZIONE ELEMENTI:");
 		for (Catalogo item : catalogo) {
 			if (item instanceof Libri) {
 				Libri libro = (Libri) item;
