@@ -68,6 +68,8 @@ public class MainProgetto {
 			}
 		}
 
+		System.out.println("");
+
 		// RICERCA ELEMENTO CATALOGO TRAMITE ISBN
 		String cercaIsbn = "2234567891011";
 		Catalogo isbnItem = cercaIsbn(catalogo, cercaIsbn);
@@ -79,6 +81,8 @@ public class MainProgetto {
 			System.out.println("Elemento non trovato.ERRORE ISBN");
 		}
 
+		System.out.println("");
+
 		// RICERCA ELEMENTI TRAMITE ANNO PUBBLICAZIONE
 		int cercaAnnoPubblicazione = 1954;
 		List<Catalogo> annoItem = catalogo.stream()
@@ -88,11 +92,13 @@ public class MainProgetto {
 		if (!annoItem.isEmpty()) {
 			System.out.println("Elementi trovati per l'anno " + cercaAnnoPubblicazione + ":");
 			for (Catalogo item : annoItem) {
-				System.out.println(" " + item.getTitolo() + ", ");
+				System.out.println("Titolo: " + item.getTitolo() + ", " + item.getAnnoPubblicazione());
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'anno " + cercaAnnoPubblicazione);
 		}
+
+		System.out.println("");
 
 		// RICERCA ELEMENTI TRAMITE AUTORI
 		String cercaAutore = "J.R.R. Tolkien";
@@ -102,7 +108,7 @@ public class MainProgetto {
 		if (!autoreItem.isEmpty()) {
 			System.out.println("Elementi trovati per l'autore " + cercaAutore + ":");
 			for (Catalogo item : autoreItem) {
-				System.out.println(" " + item.getTitolo() + ", ");
+				System.out.println("Titolo: " + item.getTitolo() + ", " + item.getAnnoPubblicazione());
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'autore " + cercaAutore + ".");
