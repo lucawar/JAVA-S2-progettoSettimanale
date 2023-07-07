@@ -27,7 +27,7 @@ public class MainProgetto {
 		catalogo.add(libro4);
 		Riviste rivista1 = new Riviste("2234567891011", "Focus", LocalDate.of(2022, 3, 1), 50, Periodicita.MENSILE);
 		Riviste rivista2 = new Riviste("2234567891012", "National Geographic", LocalDate.of(1988, 9, 22), 100,
-				Periodicita.MENSILE);
+				Periodicita.TRIMESTRALE);
 		Riviste rivista3 = new Riviste("2234567891013", "Time", LocalDate.of(1954, 3, 3), 50, Periodicita.SETTIMANALE);
 		catalogo.add(rivista1);
 		catalogo.add(rivista2);
@@ -38,11 +38,11 @@ public class MainProgetto {
 		for (Catalogo item : catalogo) {
 			if (item instanceof Riviste) {
 				Riviste rivista = (Riviste) item;
-				System.out.println("Titolo: " + rivista.getTitolo());
-				System.out.println("ISBN: " + rivista.getIsbn());
-				System.out.println("Anno pubblicazione: " + rivista.getAnnoPubblicazione());
-				System.out.println("Numero pagine: " + rivista.getNumeroPagine());
-				System.out.println("Periodicità: " + rivista.getPeriodo());
+				System.out.println("Titolo: " + rivista.titolo);
+				System.out.println("ISBN: " + rivista.isbn);
+				System.out.println("Anno pubblicazione: " + rivista.annoPubblicazione);
+				System.out.println("Numero pagine: " + rivista.numeroPagine);
+				System.out.println("Periodicità: " + rivista.periodo);
 				System.out.println("-------------------------");
 			}
 		}
@@ -54,11 +54,11 @@ public class MainProgetto {
 		for (Catalogo item : catalogo) {
 			if (item instanceof Libri) {
 				Libri libro = (Libri) item;
-				System.out.println("Titolo: " + libro.getTitolo());
+				System.out.println("Titolo: " + libro.titolo);
 				System.out.println("Autore: " + libro.getAutore());
-				System.out.println("ISBN: " + libro.getIsbn());
-				System.out.println("Anno pubblicazione: " + libro.getAnnoPubblicazione());
-				System.out.println("Numero pagine: " + libro.getNumeroPagine());
+				System.out.println("ISBN: " + libro.isbn);
+				System.out.println("Anno pubblicazione: " + libro.annoPubblicazione);
+				System.out.println("Numero pagine: " + libro.numeroPagine);
 				System.out.println("Genere: " + libro.getGenere());
 				System.out.println("-------------------------");
 			}
@@ -66,8 +66,8 @@ public class MainProgetto {
 
 		System.out.println("");
 
-		// RIMOZIONE DI UN ELEMENTO TRAMITE ISBN ["HARRY POTTER"]
-		String rimuoviIsbn = "1234567891012";
+		// RIMOZIONE DI UN ELEMENTO TRAMITE ISBN ["ARTE DELLA GUERRA"]
+		String rimuoviIsbn = "1234567891011";
 		rimuoviElementoIsbn(catalogo, rimuoviIsbn);
 
 		// STAMPO RIVISTE NEL CATALOGO DOPO RIMOZIONE ELEMENTI
@@ -75,11 +75,11 @@ public class MainProgetto {
 		for (Catalogo item : catalogo) {
 			if (item instanceof Riviste) {
 				Riviste rivista = (Riviste) item;
-				System.out.println("Titolo: " + rivista.getTitolo());
-				System.out.println("ISBN: " + rivista.getIsbn());
-				System.out.println("Anno pubblicazione: " + rivista.getAnnoPubblicazione());
-				System.out.println("Numero pagine: " + rivista.getNumeroPagine());
-				System.out.println("Periodicità: " + rivista.getPeriodo());
+				System.out.println("Titolo: " + rivista.titolo);
+				System.out.println("ISBN: " + rivista.isbn);
+				System.out.println("Anno pubblicazione: " + rivista.annoPubblicazione);
+				System.out.println("Numero pagine: " + rivista.numeroPagine);
+				System.out.println("Periodicità: " + rivista.periodo);
 				System.out.println("-------------------------");
 			}
 		}
@@ -91,11 +91,11 @@ public class MainProgetto {
 		for (Catalogo item : catalogo) {
 			if (item instanceof Libri) {
 				Libri libro = (Libri) item;
-				System.out.println("Titolo: " + libro.getTitolo());
+				System.out.println("Titolo: " + libro.titolo);
 				System.out.println("Autore: " + libro.getAutore());
-				System.out.println("ISBN: " + libro.getIsbn());
-				System.out.println("Anno pubblicazione: " + libro.getAnnoPubblicazione());
-				System.out.println("Numero pagine: " + libro.getNumeroPagine());
+				System.out.println("ISBN: " + libro.isbn);
+				System.out.println("Anno pubblicazione: " + libro.annoPubblicazione);
+				System.out.println("Numero pagine: " + libro.numeroPagine);
 				System.out.println("Genere: " + libro.getGenere());
 				System.out.println("-------------------------");
 			}
@@ -104,12 +104,12 @@ public class MainProgetto {
 		System.out.println("");
 
 		// RICERCA ELEMENTO CATALOGO TRAMITE ISBN
-		String cercaIsbn = "2234567891011";
+		String cercaIsbn = "1234567891014";
 		Catalogo isbnItem = cercaIsbn(catalogo, cercaIsbn);
 
 		if (isbnItem != null) {
 			System.out.println("Elemento trovato tramite ISBN: ");
-			System.out.println(isbnItem.getTitolo());
+			System.out.println(isbnItem.titolo);
 		} else {
 			System.out.println("Elemento non trovato.ERRORE ISBN");
 		}
@@ -119,13 +119,13 @@ public class MainProgetto {
 		// RICERCA ELEMENTI TRAMITE ANNO PUBBLICAZIONE
 		int cercaAnnoPubblicazione = 1954;
 		List<Catalogo> annoItem = catalogo.stream()
-				.filter(item -> item.getAnnoPubblicazione().getYear() == cercaAnnoPubblicazione)
+				.filter(item -> item.annoPubblicazione.getYear() == cercaAnnoPubblicazione)
 				.collect(Collectors.toList());
 
 		if (!annoItem.isEmpty()) {
 			System.out.println("Elementi trovati per l'anno " + cercaAnnoPubblicazione + ":");
 			for (Catalogo item : annoItem) {
-				System.out.println("Titolo: " + item.getTitolo() + ", " + item.getAnnoPubblicazione());
+				System.out.println("Titolo: " + item.titolo + ", " + item.annoPubblicazione);
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'anno " + cercaAnnoPubblicazione);
@@ -141,7 +141,7 @@ public class MainProgetto {
 		if (!autoreItem.isEmpty()) {
 			System.out.println("Elementi trovati per l'autore " + cercaAutore + ":");
 			for (Catalogo item : autoreItem) {
-				System.out.println("Titolo: " + item.getTitolo() + ", " + item.getAnnoPubblicazione());
+				System.out.println("Titolo: " + item.titolo + ", " + item.annoPubblicazione);
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'autore " + cercaAutore + ".");
