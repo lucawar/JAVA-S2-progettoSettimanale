@@ -19,9 +19,12 @@ public class MainProgetto {
 				"J.K. Rowling", "Fantasy");
 		Libri libro3 = new Libri("1234567891013", "Il Signore Degli Anelli", LocalDate.of(1949, 6, 8), 328,
 				"J.R.R. Tolkien", "Fantasy");
+		Libri libro4 = new Libri("1234567891014", "Lo Hobbit", LocalDate.of(1937, 11, 21), 350, "J.R.R. Tolkien",
+				"Fantasy");
 		catalogo.add(libro1);
 		catalogo.add(libro2);
 		catalogo.add(libro3);
+		catalogo.add(libro4);
 		Riviste rivista1 = new Riviste("2234567891011", "Focus", LocalDate.of(2022, 3, 1), 50, Periodicita.MENSILE);
 		Riviste rivista2 = new Riviste("2234567891012", "National Geographic", LocalDate.of(1988, 9, 22), 100,
 				Periodicita.MENSILE);
@@ -92,14 +95,14 @@ public class MainProgetto {
 		}
 
 		// RICERCA ELEMENTI TRAMITE AUTORI
-		String cercaAutore = "Tzu Sun";
+		String cercaAutore = "J.R.R. Tolkien";
 		List<Catalogo> autoreItem = catalogo.stream().filter(item -> item instanceof Libri).map(item -> (Libri) item)
 				.filter(libro -> libro.getAutore().equals(cercaAutore)).collect(Collectors.toList());
 
 		if (!autoreItem.isEmpty()) {
 			System.out.println("Elementi trovati per l'autore " + cercaAutore + ":");
 			for (Catalogo item : autoreItem) {
-				System.out.print(" " + item.getTitolo());
+				System.out.println(" " + item.getTitolo() + ", ");
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'autore " + cercaAutore + ".");
