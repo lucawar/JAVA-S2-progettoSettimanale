@@ -30,6 +30,10 @@ public class MainProgetto {
 		catalogo.add(rivista2);
 		catalogo.add(rivista3);
 
+		// RIMOZIONE DI UN ELEMENTO TRAMITE IDBN
+		String rimuoviIsbn = "1234567891012";
+		rimuoviElementoIsbn(catalogo, rimuoviIsbn);
+
 		// STAMPO RIVISTE NEL CATALOGO
 		System.out.println("RIVISTE CATALOGO:");
 		for (Catalogo item : catalogo) {
@@ -61,34 +65,29 @@ public class MainProgetto {
 			}
 		}
 
-		// RIMOZIONE DI UN ELEMENTO TRAMITE IDBN
-		String isbnRimosso = "1234567891013";
-		catalogo.removeIf(item -> item.getIsbn() == isbnRimosso);
-
 		// RICERCA ELEMENTO CATALOGO TRAMITE IDBN
-		String isbnCerca = "";
-		Catalogo foundItem = catalogo.stream().filter(item -> item.getIsbn().equals(isbnCerca)).findFirst()
-				.orElse(null);
+		String cercaIsbn = "2234567891011";
+		Catalogo foundItem = cercaIsbn(catalogo, cercaIsbn);
 
 		if (foundItem != null) {
-			System.out.println("Elemento trovato: " + foundItem.getTitolo());
+			System.out.println("Elemento trovato tramite ISBN: " + foundItem.getTitolo());
 		} else {
-			System.out.println("Elemento non trovato.");
+			System.out.println("Elemento non trovato.ERRORE ISBN");
 		}
 
 		// RICERCA ELEMNTI TRAMITE ANNO PUBBLICAZIONE
-		int annoPubblicazioneToSearch = 1988;
+		int cercaAnnoPubblicazione = 1923;
 		List<Catalogo> itemsByYear = catalogo.stream()
-				.filter(item -> item.getAnnoPubblicazione().getYear() == annoPubblicazioneToSearch)
+				.filter(item -> item.getAnnoPubblicazione().getYear() == cercaAnnoPubblicazione)
 				.collect(Collectors.toList());
 
 		if (!itemsByYear.isEmpty()) {
-			System.out.println("Elementi trovati per l'anno " + annoPubblicazioneToSearch + ":");
+			System.out.print("Elementi trovati per l'anno " + cercaAnnoPubblicazione + ":");
 			for (Catalogo item : itemsByYear) {
-				System.out.println(item.getTitolo());
+				System.out.println(" " + item.getTitolo());
 			}
 		} else {
-			System.out.println("Nessun elemento trovato per l'anno " + annoPubblicazioneToSearch);
+			System.out.println("Nessun elemento trovato per l'anno " + cercaAnnoPubblicazione);
 		}
 
 		// RICERCA ELEMENTI TRAMITE AUTORI
@@ -97,12 +96,20 @@ public class MainProgetto {
 				.filter(libro -> libro.getAutore().equals(autoreToSearch)).collect(Collectors.toList());
 
 		if (!itemsByAuthor.isEmpty()) {
-			System.out.println("Elementi trovati per l'autore " + autoreToSearch + ":");
+			System.out.print("Elementi trovati per l'autore " + autoreToSearch + ":");
 			for (Catalogo item : itemsByAuthor) {
-				System.out.println(item.getTitolo());
+				System.out.print(" " + item.getTitolo());
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'autore " + autoreToSearch + ".");
 		}
+	}
+
+	public static void rimuoviElementoIsbn(List<Catalogo> catalogo, String isbn) {
+		catalogo.removeIf(e -> e.getIsbn() == isbn);
+	}
+
+	public static Catalogo cercaIsbn(List<Catalogo> catalogo, String isbn) {
+		return catalogo.stream().filter(e -> e.getIsbn() == isbn).findFirst().orElse(null);
 	}
 }
