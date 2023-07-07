@@ -25,7 +25,7 @@ public class MainProgetto {
 		Riviste rivista1 = new Riviste("2234567891011", "Focus", LocalDate.of(2022, 3, 1), 50, Periodicita.MENSILE);
 		Riviste rivista2 = new Riviste("2234567891012", "National Geographic", LocalDate.of(1988, 9, 22), 100,
 				Periodicita.MENSILE);
-		Riviste rivista3 = new Riviste("2234567891013", "Time", LocalDate.of(1923, 3, 3), 50, Periodicita.SETTIMANALE);
+		Riviste rivista3 = new Riviste("2234567891013", "Time", LocalDate.of(1954, 3, 3), 50, Periodicita.SETTIMANALE);
 		catalogo.add(rivista1);
 		catalogo.add(rivista2);
 		catalogo.add(rivista3);
@@ -67,41 +67,42 @@ public class MainProgetto {
 
 		// RICERCA ELEMENTO CATALOGO TRAMITE IDBN
 		String cercaIsbn = "2234567891011";
-		Catalogo foundItem = cercaIsbn(catalogo, cercaIsbn);
+		Catalogo cercaTramiteIsbn = cercaIsbn(catalogo, cercaIsbn);
 
-		if (foundItem != null) {
-			System.out.println("Elemento trovato tramite ISBN: " + foundItem.getTitolo());
+		if (cercaTramiteIsbn != null) {
+			System.out.println("Elemento trovato tramite ISBN: ");
+			System.out.println(cercaTramiteIsbn.getTitolo());
 		} else {
 			System.out.println("Elemento non trovato.ERRORE ISBN");
 		}
 
-		// RICERCA ELEMNTI TRAMITE ANNO PUBBLICAZIONE
-		int cercaAnnoPubblicazione = 1923;
-		List<Catalogo> itemsByYear = catalogo.stream()
+		// RICERCA ELEMENTI TRAMITE ANNO PUBBLICAZIONE
+		int cercaAnnoPubblicazione = 1954;
+		List<Catalogo> annoItem = catalogo.stream()
 				.filter(item -> item.getAnnoPubblicazione().getYear() == cercaAnnoPubblicazione)
 				.collect(Collectors.toList());
 
-		if (!itemsByYear.isEmpty()) {
-			System.out.print("Elementi trovati per l'anno " + cercaAnnoPubblicazione + ":");
-			for (Catalogo item : itemsByYear) {
-				System.out.println(" " + item.getTitolo());
+		if (!annoItem.isEmpty()) {
+			System.out.println("Elementi trovati per l'anno " + cercaAnnoPubblicazione + ":");
+			for (Catalogo item : annoItem) {
+				System.out.println(" " + item.getTitolo() + ", ");
 			}
 		} else {
 			System.out.println("Nessun elemento trovato per l'anno " + cercaAnnoPubblicazione);
 		}
 
 		// RICERCA ELEMENTI TRAMITE AUTORI
-		String autoreToSearch = "Tzu Sun";
-		List<Catalogo> itemsByAuthor = catalogo.stream().filter(item -> item instanceof Libri).map(item -> (Libri) item)
-				.filter(libro -> libro.getAutore().equals(autoreToSearch)).collect(Collectors.toList());
+		String cercaAutore = "Tzu Sun";
+		List<Catalogo> autoreItem = catalogo.stream().filter(item -> item instanceof Libri).map(item -> (Libri) item)
+				.filter(libro -> libro.getAutore().equals(cercaAutore)).collect(Collectors.toList());
 
-		if (!itemsByAuthor.isEmpty()) {
-			System.out.print("Elementi trovati per l'autore " + autoreToSearch + ":");
-			for (Catalogo item : itemsByAuthor) {
+		if (!autoreItem.isEmpty()) {
+			System.out.println("Elementi trovati per l'autore " + cercaAutore + ":");
+			for (Catalogo item : autoreItem) {
 				System.out.print(" " + item.getTitolo());
 			}
 		} else {
-			System.out.println("Nessun elemento trovato per l'autore " + autoreToSearch + ".");
+			System.out.println("Nessun elemento trovato per l'autore " + cercaAutore + ".");
 		}
 	}
 
