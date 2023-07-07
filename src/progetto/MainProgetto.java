@@ -67,11 +67,11 @@ public class MainProgetto {
 
 		// RICERCA ELEMENTO CATALOGO TRAMITE IDBN
 		String cercaIsbn = "2234567891011";
-		Catalogo cercaTramiteIsbn = cercaIsbn(catalogo, cercaIsbn);
+		Catalogo isbnItem = cercaIsbn(catalogo, cercaIsbn);
 
-		if (cercaTramiteIsbn != null) {
+		if (isbnItem != null) {
 			System.out.println("Elemento trovato tramite ISBN: ");
-			System.out.println(cercaTramiteIsbn.getTitolo());
+			System.out.println(isbnItem.getTitolo());
 		} else {
 			System.out.println("Elemento non trovato.ERRORE ISBN");
 		}
