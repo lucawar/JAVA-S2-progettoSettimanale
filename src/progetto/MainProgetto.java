@@ -65,7 +65,7 @@ public class MainProgetto {
 			}
 		}
 
-		// RICERCA ELEMENTO CATALOGO TRAMITE IDBN
+		// RICERCA ELEMENTO CATALOGO TRAMITE ISBN
 		String cercaIsbn = "2234567891011";
 		Catalogo isbnItem = cercaIsbn(catalogo, cercaIsbn);
 
@@ -106,10 +106,12 @@ public class MainProgetto {
 		}
 	}
 
+	// METODO ELIMINA ELEMENTO CATALOGO TRAMITE ISBN
 	public static void rimuoviElementoIsbn(List<Catalogo> catalogo, String isbn) {
 		catalogo.removeIf(e -> e.getIsbn() == isbn);
 	}
 
+	// METODO RICERCA ELEMENTO CATALOGO TRAMITE ISBN
 	public static Catalogo cercaIsbn(List<Catalogo> catalogo, String isbn) {
 		return catalogo.stream().filter(e -> e.getIsbn() == isbn).findFirst().orElse(null);
 	}
